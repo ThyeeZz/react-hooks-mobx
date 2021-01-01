@@ -1,0 +1,38 @@
+$blue: #409EFF;
+
+.sigup-container {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .login-box {
+    width: 500px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 3px 3px 5px #ccc;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .bg-box {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background-color: $blue;
+    position: absolute;
+    right: -10%;
+    top: -50%;
+    transform: translateY(50%);
+
+    .btn-wrapper {
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
