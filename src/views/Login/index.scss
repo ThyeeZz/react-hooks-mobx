@@ -2,11 +2,12 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  transition: all 1s linear;
 
   .tab-change-wrap {
     width: 200%;
     height: 100%;
-    transition: all 1s linear;
+    transition: all 0.5s linear 0s;
     display: flex;
     justify-content: flex-start;
   }

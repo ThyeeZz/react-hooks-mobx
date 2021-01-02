@@ -1,10 +1,10 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import './index.scss'
 
 const layout = {
   labelCol: {
-    span: 8,
+    span: 6,
   },
   wrapperCol: {
     span: 16,
@@ -12,17 +12,18 @@ const layout = {
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
+    offset: 6,
     span: 16,
   },
 };
 
 const SignUp = (props) => {
-  const { tabchange } = props;
+  const { tabchange,signup } = props;
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
     console.log('Success:', values);
+    signup(values)
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -45,6 +46,7 @@ const SignUp = (props) => {
         <Form
           {...layout}
           name="basic"
+          form={form}
           initialValues={{
             remember: true,
           }}
@@ -77,13 +79,9 @@ const SignUp = (props) => {
             <Input.Password />
           </Form.Item>
 
-          <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">Submit</Button>
-            <Button htmlType="button" onClick={onReset}>Reset</Button>
+            <Button type="primary" htmlType="submit">注 册</Button>
+            <Button htmlType="button" onClick={onReset}>重 置</Button>
           </Form.Item>
         </Form>
 

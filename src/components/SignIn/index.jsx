@@ -4,7 +4,7 @@ import './index.scss'
 
 const layout = {
   labelCol: {
-    span: 8,
+    span: 6,
   },
   wrapperCol: {
     span: 16,
@@ -12,16 +12,16 @@ const layout = {
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 8,
+    offset: 6,
     span: 16,
   },
 };
 
 const SignIn = (props) => {
-  const { tabchange } = props;
+  const { tabchange, signin } = props;
 
   const onFinish = (values) => {
-    console.log('Success:', values);
+    signin(values)
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -78,9 +78,7 @@ const SignIn = (props) => {
           </Form.Item>
 
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
-              Submit
-        </Button>
+            <Button type="primary" htmlType="submit">登 录</Button>
           </Form.Item>
         </Form>
       </div>
