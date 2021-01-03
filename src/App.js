@@ -1,5 +1,6 @@
-import Index from './views/Index/index.tsx';
+import Index from './views/Index/index.jsx';
 import Login from './views/Login/index.jsx';
+import Error from './views/Error';
 import {BrowserRouter as Router,Route,Redirect} from 'react-router-dom'
 import {
   stores,
@@ -20,6 +21,7 @@ function App() {
             </Route>
             <Route path="/login" exact component={Login} />
             <Route path="/index" component={Index} />
+            <Route component={Error} />
           </Router>
         </div>
       </StoresContext.Provider>

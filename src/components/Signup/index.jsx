@@ -54,7 +54,7 @@ const SignUp = (props) => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Username"
+            label="用户名"
             name="username"
             rules={[
               {
@@ -67,7 +67,7 @@ const SignUp = (props) => {
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label="密码"
             name="password"
             rules={[
               {

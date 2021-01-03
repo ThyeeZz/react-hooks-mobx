@@ -48,7 +48,7 @@ const SignIn = (props) => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Username"
+            label="用户名"
             name="username"
             rules={[
               {
@@ -61,7 +61,7 @@ const SignIn = (props) => {
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label="密码"
             name="password"
             rules={[
               {
@@ -74,7 +74,7 @@ const SignIn = (props) => {
           </Form.Item>
 
           <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>记住登录</Checkbox>
           </Form.Item>
 
           <Form.Item {...tailLayout}>

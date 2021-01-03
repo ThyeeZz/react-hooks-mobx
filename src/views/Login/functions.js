@@ -26,5 +26,5 @@ export const useSignup = (loginStore, props) => {
     } else {
       message.error(res.msg)
     }
-  }, [loginStore])
+  }, [loginStore, props.history])
 }

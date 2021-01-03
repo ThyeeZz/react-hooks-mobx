@@ -1,0 +1,23 @@
+.index-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .content{
+    flex:1;
+    height: 100%;
+
+    .content-page-header{
+      height: 50px;
+      padding: 8px 15px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+    }
+    .content-layout{
+      width: 100%;
+      height: calc(100% - 50px);
+      padding: 15px;
+    }
+  }
+}
