@@ -1,0 +1,23 @@
+.user-layout{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  .user-layout-aside{
+    flex: 1;
+    border: 1px solid red;
+  }
+  .user-layout-content{
+    flex: 5;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    .user-layout-title{
+      flex: 1;
+      border: 1px solid yellow;
+    }
+    .user-layout-main{
+      flex: 7;
+      border: 1px solid purple;
+    }
+  }
+}

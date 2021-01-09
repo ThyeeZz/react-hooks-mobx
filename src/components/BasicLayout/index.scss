@@ -1,0 +1,18 @@
+.basic-layout{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  .basic-layout-header{
+    flex: 1;
+    border: 1px solid red;
+  }
+  .basic-layout-content{
+    flex: 8;
+    border: 1px solid blue;
+  }
+  .basic-layout-footer{
+    flex: 1;
+    border: 1px solid green;
+  }
+}
