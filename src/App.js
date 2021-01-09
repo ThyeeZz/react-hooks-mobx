@@ -1,7 +1,7 @@
 import Index from './views/Index/index.jsx';
 import Login from './views/Login/index.jsx';
 import Error from './views/Error';
-import {BrowserRouter as Router,Route,Redirect} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Redirect,Switch} from 'react-router-dom'
 import {
   stores,
   StoresContext
@@ -16,12 +16,14 @@ function App() {
       <StoresContext.Provider value={stores}>
         <div className="App">
           <Router>
-            <Route path="/" exact >
-              <Redirect to="/login" />
-            </Route>
-            <Route path="/login" exact component={Login} />
-            <Route path="/index" component={Index} />
-            <Route component={Error} />
+            <Switch>
+              <Route path="/" exact >
+                <Redirect to="/login" />
+              </Route>
+              <Route path="/login" exact component={Login} />
+              <Route path="/index" component={Index} />
+              <Route component={Error} />
+            </Switch>
           </Router>
         </div>
       </StoresContext.Provider>
