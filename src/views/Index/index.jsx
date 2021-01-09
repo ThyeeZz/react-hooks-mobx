@@ -8,28 +8,30 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
+import useRouter from './useRouter'
 import './index.scss';
 
-const { beforeRouterComponentLoad, afterRouterComponentDidLoaded } = RouterHooks
+// const { beforeRouterComponentLoad, afterRouterComponentDidLoaded } = RouterHooks;
 
 const Index = (props) => {
-  console.log(props.history)
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   };
-
+  const [label1,label2] = useRouter(ROUTES,props.history.location.pathname);
   useEffect(() => {
-    /* 增加监听函数 */
-    beforeRouterComponentLoad((history) => {
-      console.log('当前激活的路由是', history.location.pathname)
-    })
-    afterRouterComponentDidLoaded(history => {
-      console.log(history.location.pathname + '已经加载')
-    })
+    // /* 增加监听函数 */
+    // beforeRouterComponentLoad((history) => {
+    //   console.log('当前激活的路由是', history.location);
+      
+    // })
+    // afterRouterComponentDidLoaded(history => {
+    //   console.log(history.location.pathname + '已经加载')
+    // })
+    
   }, []);
-
+  
   return (
     <div className="index-container">
       <div className="sidebar">
@@ -44,25 +46,38 @@ const Index = (props) => {
           </div>
           <Breadcrumb>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>
+            {/* <Breadcrumb.Item>
               <a href="">Application Center</a>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
               <a href="">Application List</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>An Application</Breadcrumb.Item>
+            </Breadcrumb.Item> */}
+            <Breadcrumb.Item>{label1}</Breadcrumb.Item>
+            <Breadcrumb.Item>{label2}</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="content-layout">
           <Route path="/index/" exact>
-            <Redirect to="/index/home" />
+            <Redirect to="/index/bookkeepManager/home" />
           </Route>
           {
-            ROUTES.map(item=>{
+            ROUTES[0].children.map(item=>{
               return (
                 <Route key={item.id} path={'/index' + item.path} exact component={item.component} />
               )
             })
+            // ROUTES.map(item=>{
+            //   const {layout: Layout,children} = item;
+            //   return (
+            //     <Layout key={item.id}>
+            //       {
+            //         children.map(subItem=>{
+            //           <Route key={subItem.id} path={'/index' + item.path + subItem.path} exact component={item.component} />
+            //         })
+            //       }
+            //     </Layout>
+            //   )
+            // })
           }
         </div>
       </div>
