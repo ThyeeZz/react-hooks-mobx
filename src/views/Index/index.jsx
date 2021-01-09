@@ -8,10 +8,18 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
-import useRouter from './useRouter'
+import useRouter from './useRouter';
+import showComponentWithinLayout from '../../components/ShowLayout'
 import './index.scss';
 
 // const { beforeRouterComponentLoad, afterRouterComponentDidLoaded } = RouterHooks;
+const routes = ROUTES.reduce((pre, cur) => {
+  const { children } = cur;
+  if (children && children.length) {
+    pre = pre.concat(children)
+  }
+  return pre;
+}, [])
 
 const Index = (props) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -19,19 +27,19 @@ const Index = (props) => {
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   };
-  const [label1,label2] = useRouter(ROUTES,props.history.location.pathname);
+  const [levelOneLabel, levelTwoLabel] = useRouter(ROUTES,props.history.location.pathname);
   useEffect(() => {
     // /* 增加监听函数 */
     // beforeRouterComponentLoad((history) => {
     //   console.log('当前激活的路由是', history.location);
-      
+
     // })
     // afterRouterComponentDidLoaded(history => {
     //   console.log(history.location.pathname + '已经加载')
     // })
-    
+
   }, []);
-  
+
   return (
     <div className="index-container">
       <div className="sidebar">
@@ -46,38 +54,22 @@ const Index = (props) => {
           </div>
           <Breadcrumb>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
-            {/* <Breadcrumb.Item>
-              <a href="">Application Center</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a href="">Application List</a>
-            </Breadcrumb.Item> */}
-            <Breadcrumb.Item>{label1}</Breadcrumb.Item>
-            <Breadcrumb.Item>{label2}</Breadcrumb.Item>
+            <Breadcrumb.Item>{levelOneLabel}</Breadcrumb.Item>
+            <Breadcrumb.Item>{levelTwoLabel}</Breadcrumb.Item>
           </Breadcrumb>
         </div>
         <div className="content-layout">
           <Route path="/index/" exact>
-            <Redirect to="/index/bookkeepManager/home" />
+            <Redirect to="/index/bookkeepManager/mine" />
           </Route>
           {
-            ROUTES[0].children.map(item=>{
-              return (
-                <Route key={item.id} path={'/index' + item.path} exact component={item.component} />
-              )
+            routes.map(item => {
+              const { layout, isLayout, component, id, path } = item;
+              if (layout && isLayout) {
+                return <Route key={id} path={'/index' + path} exact render={()=>showComponentWithinLayout(layout, component)} />
+              }
+              return <Route key={id} path={'/index' + path} exact component={component} />
             })
-            // ROUTES.map(item=>{
-            //   const {layout: Layout,children} = item;
-            //   return (
-            //     <Layout key={item.id}>
-            //       {
-            //         children.map(subItem=>{
-            //           <Route key={subItem.id} path={'/index' + item.path + subItem.path} exact component={item.component} />
-            //         })
-            //       }
-            //     </Layout>
-            //   )
-            // })
           }
         </div>
       </div>
